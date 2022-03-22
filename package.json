@@ -1,0 +1,28 @@
+{
+  "name": "alura-node-express-mongo",
+  "version": "1.0.0",
+  "description": "Desenvolvimento de uma API Rest com Express e MongoDB pelo curso da plataforma Alura",
+  "main": "server.js",
+  "scripts": {
+    "dev": "nodemon server.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vitor-martini/alura-node-express-mongo.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/vitor-martini/alura-node-express-mongo/issues"
+  },
+  "homepage": "https://github.com/vitor-martini/alura-node-express-mongo#readme",
+  "devDependencies": {
+    "nodemon": "^2.0.15"
+  },
+  "dependencies": {
+    "express": "^4.17.3"
+  },
+  "type": "module"
+}

@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="css/style.css">
+    <title>Livraria</title>
+</head>
+<body>
+    <header id="header">
+        <nav> 
+            <div class="container">
+                <div class="text-center">
+                    <a href="/" class="nav-brand text-dark">Livraria</a>
+                </div>
+            </div>
+        </nav>  
+    </header>
+    <main id="site-main">
+        <div class="container">
+            <div class="box-nav d-flex-justufy-between">
+                <div class="filter">
+                    <a href="/"><i class="fas fa-angle-double-left"></i> Todos os livros</a>
+                </div>                
+            </div>
+            <div class="form-title text-center">
+                <h2 class="text-dark">Atualizar Livro</h2>
+                <span class="text-light">Utilize o formulário abaixo para atualizar o livro</span>
+            </div>     
+
+            <form method="POST" id="update_book">
+                <div class="new_book">
+                    <div class="form-group">
+                        <label for="titulo" class="text-light">Título</label>
+                        <input type="hidden" name="id" value = "">
+                        <input type="text" name="titulo" value="">
+                    </div>
+                    <div class="form-group">
+                        <label for="autor" class="text-light">Autor</label>
+                        <input type="text" name="autor" value="">
+                    </div>
+                    <div class="form-group">
+                        <label for="editora" class="text-light">Editor</label>
+                        <input type="text" name="editora" value="">
+                    </div>
+                    <div class="form-group">
+                        <label for="numero-paginas" class="text-light">N° de Páginas</label>
+                        <input type="number" name="numero-paginas" value="">
+                    </div> 
+                    <div class="form-group">
+                        <label for="status" class="radio-label">Status</label>
+                        <div class="radio inline">
+                            <input type="radio" id="radio-4" name="status" value="Ativo">
+                            <label for="radio-4" class="radio-label">Ativo</label>
+                        </div>
+                        <div class="radio inline">
+                            <input type="radio" id="radio-5" name="status" value="Inativo">
+                            <label for="radio-5" class="radio-label">Inativo</label>
+                        </div>
+                    </div>
+                    <div class="form-group">                       
+                        <button type="submit" class="btn text-dark update">Salvar</button>
+                    </div>
+                </div>
+            </form>
+
+
+        </div>
+
+    </main>
+</body>
+</html>

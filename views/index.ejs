@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="css/style.css">
+    <title>Livraria</title>
+</head>
+<body>
+    <header id="header">
+        <nav> 
+            <div class="container">
+                <div class="text-center">
+                    <a href="/" class="nav-brand text-dark">Livraria</a>
+                </div>
+            </div>
+        </nav>  
+    </header>
+    <main id="site-main">
+        <div class="container">
+            <div class="box-nav d-flex-justify-between">
+                <a href="/cadastrar-livro" clas="border-shadow">
+                    <span class="text-gradient">Novo Livro<i class="fa-solid fa-book"></i></span>
+                </a>
+            </div>
+        </div>
+
+        <form action="/" method="POST">
+            <table class="table">
+                <thead class="thead-dark">
+                    <tr>
+                        <th>ID</th>
+                        <th>Titulo</th>
+                        <th>Autor</th>
+                        <th>Editora</th>
+                        <th>N° de Páginas</th>
+                        <th>Ação</th>
+                    </tr>
+                </thead>
+                <tbody>                    
+                    <% for(var i = 0; i < livros.length; i++){%>
+                    <tr>
+                        <td><%= i + 1%></td>
+                        <td><%= livros[i].titulo%></td>
+                        <td><%= livros[i].autor.nome%></td>
+                        <td><%= livros[i].editora%></td>
+                        <td><%= livros[i].numeroPaginas%></td>
+                        <td>
+                            <a href="/atualizar-livro" class="btn border-shadow update">
+                                <span class="text-gradient"><i class="fas fa-pencil-alt"></i></span>
+                            </a>
+                            <a class="btn border-shadow delete">
+                                <span class="text-gradient"><i class="fa-solid fa-trash-can"></i></span>
+                            </a>
+                                
+                        </td>
+                    </tr>
+                    <% }%>
+                </tbody>
+            </table>
+
+        </form>
+
+
+
+    </main>
+</body>
+</html>

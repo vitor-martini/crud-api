@@ -4,14 +4,26 @@ class LivroController{
 
     // Método "select")"
     static listarLivro = (req, res) => { 
-        livros.find() // Busca os dados
-            .populate('autor') // Popula o autor com base na ligação do arquivo models
-            .exec((err, livros) => { 
+        if(req.query.id){
+            const id = req.query.id
+            livros.findById(id) // Procura pelo ID
+            .populate('autor') // Traz somente o nome do autor, não todos os dados como o método listarLivros
+            .exec((err, livros) => {
                 if(err)
-                    res.status(500).send({message: `${err.message} - falha ao listar livros.`})
+                    res.status(400).send({message: `${err.message} - livro não encontrado.`})
                 else
-                    res.status(200).send(livros) // Devolve os livros encontrados
+                    res.status(200).send(livros) 
             });
+        }else{ 
+            livros.find() // Busca os dados
+                .populate('autor', 'nome') // Traz somente o nome do autor, não todos os dados como o método listarLivros
+                .exec((err, livros) => { 
+                    if(err)
+                        res.status(500).send({message: `${err.message} - falha ao listar livros.`})
+                    else
+                        res.status(200).send(livros) // Devolve os livros encontrados
+                });
+        }
     }
 
     // Método "select where editora = <editora>"
@@ -26,23 +38,15 @@ class LivroController{
         })
     }
 
-    // Método "select where id = <id>"
-    static listarLivroPorID = (req, res) => { 
-        const id = req.params.id;
-
-        livros.findById(id) // Procura pelo ID
-            .populate('autor', 'nome') // Traz somente o nome do autor, não todos os dados como o método listarLivros
-            .exec((err, livros) => {
-                if(err)
-                    res.status(400).send({message: `${err.message} - livro não encontrado.`})
-                else
-                    res.status(200).send(livros) 
-            });
-    }
-
     // Método "insert"
     static cadastrarLivro = (req, res) => {
-        let livro = new livros(req.body); // Recebe o json do corpo da requisição
+
+        let livro = new livros({
+            titulo: req.body.titulo,
+            autor: req.body.autor,
+            editora: req.body.editora,
+            numeroPaginas: req.body.numeroPaginas
+        }); // Recebe o json do corpo da requisição
 
         livro.save(err => { // Salva no banco
             if(err)

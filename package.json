@@ -2,9 +2,9 @@
   "name": "alura-node-express-mongo",
   "version": "1.0.0",
   "description": "Desenvolvimento de uma API Rest com Express e MongoDB pelo curso da plataforma Alura",
-  "main": "./src/server/server.js",
+  "main": "./src/server.js",
   "scripts": {
-    "dev": "nodemon server.js",
+    "start": "nodemon server.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -22,6 +22,10 @@
     "nodemon": "^2.0.15"
   },
   "dependencies": {
+    "axios": "^0.26.1",
+    "body-parser": "^1.19.2",
+    "dotenv": "^16.0.0",
+    "ejs": "^3.1.6",
     "express": "^4.17.3",
     "mongoose": "^6.2.6"
   },

@@ -27,7 +27,7 @@
             </div>
         </div>
 
-        <form action="/" method="POST">
+        <form>
             <table class="table">
                 <thead class="thead-dark">
                     <tr>
@@ -40,18 +40,18 @@
                     </tr>
                 </thead>
                 <tbody>                    
-                    <% for(var i = 0; i < livros.length; i++){%>
+                    <% for(var i = 0; i < listaDeLivros.length; i++){%>
                     <tr>
                         <td><%= i + 1%></td>
-                        <td><%= livros[i].titulo%></td>
-                        <td><%= livros[i].autor.nome%></td>
-                        <td><%= livros[i].editora%></td>
-                        <td><%= livros[i].numeroPaginas%></td>
+                        <td><%= listaDeLivros[i].titulo%></td>
+                        <td><%= listaDeLivros[i].autor.nome%></td>
+                        <td><%= listaDeLivros[i].editora%></td>
+                        <td><%= listaDeLivros[i].numeroPaginas%></td>
                         <td>
-                            <a href="/atualizar-livro" class="btn border-shadow update">
+                            <a href="/atualizar-livro?id=<%= listaDeLivros[i]._id%>" class="btn border-shadow delete">
                                 <span class="text-gradient"><i class="fas fa-pencil-alt"></i></span>
                             </a>
-                            <a class="btn border-shadow delete">
+                            <a class="btn border-shadow delete" data-id="<%= listaDeLivros[i]._id%>" onclick= "deletar(this)">
                                 <span class="text-gradient"><i class="fa-solid fa-trash-can"></i></span>
                             </a>
                                 
@@ -66,5 +66,6 @@
 
 
     </main>
+    <script src="/js/index.js"></script>
 </body>
 </html>

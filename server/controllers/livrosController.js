@@ -69,7 +69,7 @@ class LivroController{
     // Método "update"
     static atualizarLivro = (req, res) => {
         const id = req.query.id;    
-        console.log(req.body);
+  
         livros.findByIdAndUpdate(id, {$set: req.body}, err =>{ //Procura o registro pelo ID e o atualiza conforme o json enviado
             if(err)
                 res.status(500).send({message: `${err.message} - falha ao atualizar livro.`});

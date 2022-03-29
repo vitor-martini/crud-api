@@ -28,26 +28,26 @@ class LivroController{
         .populate('autor') // Traz somente o nome do autor, não todos os dados como o método listarLivros
         .exec((err, livro) => {
             if(err)
-                res.status(400).send({message: `${err.message} - livro não encontrado.`})
-                else{
-                    res.render('atualizar-livro', {
-                        livro
-                    })
-                }
+                res.json(0).status(400)
+            else{
+                res.render('atualizar-livro', {
+                    livro
+                })
+            }
         });
     }
 
-    // Método "select where editora = <editora>"
-    static listarLivroPorEditora = (req, res) => {
-        const editora = req.query.editora
+    // // Método "select where editora = <editora>"
+    // static listarLivroPorEditora = (req, res) => {
+    //     const editora = req.query.editora
 
-        livros.find({'editora': editora}, {}, (err, livros) => { // Procura onde o atributo 'editora' for igual ao retorno da query da requisição
-            if(err)
-                res.status(500).send({message: `${err.message} - falha ao listar livros.`})
-            else            
-                res.status(200).send(livros) 
-        })
-    }
+    //     livros.find({'editora': editora}, {}, (err, livros) => { // Procura onde o atributo 'editora' for igual ao retorno da query da requisição
+    //         if(err)
+    //             res.status(500).send({message: `${err.message} - falha ao listar livros.`})
+    //         else            
+    //             res.status(200).send(livros) 
+    //     })
+    // }
 
     // Método "insert"
     static cadastrarLivro = (req, res) => {       
@@ -60,21 +60,21 @@ class LivroController{
 
         livro.save(err => { // Salva no banco
             if(err)
-                res.status(500).send({message: `${err.message} - falha ao cadastrar livro.`});
+                res.json(0).status(500);
             else   
-                res.status(201).redirect('/cadastrar-livro');
+                res.json(1).status(201); 
         })
     }
-
+ 
     // Método "update"
     static atualizarLivro = (req, res) => {
         const id = req.query.id;    
   
         livros.findByIdAndUpdate(id, {$set: req.body}, err =>{ //Procura o registro pelo ID e o atualiza conforme o json enviado
             if(err)
-                res.status(500).send({message: `${err.message} - falha ao atualizar livro.`});
+                res.json(0).status(500);
             else
-            res.status(201).redirect('/');
+                res.json(1).status(201);
         })
     }
 
@@ -84,9 +84,9 @@ class LivroController{
 
         livros.findByIdAndDelete(id, err => { //Procura o registro pelo ID e o exclui
             if(err)
-                res.status(500).send({message: `${err.message} - falha ao excluir livro.`});
+                res.json(0).status(500);
             else
-                res.status(201).redirect('/');  
+                res.json(1).status(201);
         })
     }
 }

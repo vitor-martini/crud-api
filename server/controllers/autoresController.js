@@ -3,12 +3,16 @@ import autores from "../models/Autor.js";
 class AutorController{ 
 
     static listarAutor = (req, res) => { 
-        autores.find((err, autores) => { 
+        autores.find() // Busca os dados
+        .exec((err, autores) => { 
             if(err)
-                res.status(500).send({message: `${err.message} - falha ao listar autores.`})
-            else
-                res.status(200).send(autores) 
-        });
+                res.status(500).send({message: `${err.message} - falha ao listar livros.`})
+            else{
+                res.render('cadastrar-livro', {
+                    listaDeAutores: autores
+                })
+            }
+        });       
     }
 
     static listarAutorPorID = (req, res) => { 

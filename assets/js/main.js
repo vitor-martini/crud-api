@@ -1,12 +1,11 @@
 $("#add_book").submit(function(event){
     event.preventDefault();
-
     $.ajax({
         url: `http://localhost:3000/cadastrar-livro`,
         type: `POST`,
         data: {
             titulo: $("input[name=titulo]").val(),
-            autor: $("input[name=autor]").val(),
+            autor: $("select[name=autor]").val(),
             editora: $("input[name=editora]").val(),
             numeroPaginas: $("input[name=numeroPaginas]").val(),
         },
@@ -30,7 +29,7 @@ $("#update_book").submit(function(event){
         type: `PUT`,
         data: {            
             titulo: $("input[name=titulo]").val(),
-            autor: $("input[name=autor]").val(),
+            autor: $("select[name=autor]").val(),
             editora: $("input[name=editora]").val(),
             numeroPaginas: $("input[name=numeroPaginas]").val(),
         },
@@ -72,6 +71,19 @@ $(".botao_editar").click(function(){
                 alert("Falha ao consultar dados do livro.")   
             else
                 window.location.href = (`http://localhost:3000/atualizar-livro?id=${ID}`)                  
+        }
+    })
+})
+
+$(".botao_cadastrar").click(function(){  
+    $.ajax({
+        url: `http://localhost:3000/cadastrar-livro`,
+        type: `GET`,
+        success:function(response){               
+            if(response == 0)
+                alert("Falha ao consultar dados do autor.")   
+            else
+                window.location.href = (`http://localhost:3000/cadastrar-livro`)   
         }
     })
 })

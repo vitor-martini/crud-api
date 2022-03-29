@@ -26,74 +26,34 @@ class LivroController{
     // Método "select")"
     static listarLivroPorID = (req, res) => { 
         var locals = {};
-        const id = req.query.id
-        async.parallel([
-            //Load posts Data
-            function(callback) {
-                autores.find() // Procura pelo ID
-                    .exec((err, autores) => {
-                        if (err) return callback(err);
-                        locals.autores = autores;
-                        callback();
-                    });
-            },
-            //Load user Data
-            function(callback) {
-                livros.findById(id) // Procura pelo ID
-                    .exec((err, livro) => {
-                        if (err) return callback(err);
-                        locals.livro = livro;
-                        callback();
-                    });
+        async.parallel({
+            autores: 
+                function(callback) {
+                    autores.find() // Procura pelo ID
+                        .exec((err, autores) => {
+                            if (err) return callback(err);
+                            locals.autores = autores;
+                            callback();
+                        });
+                },
+            livros: 
+                function(callback) {
+                    const id = req.query.id
+                    livros.findById(id) // Procura pelo ID
+                        .exec((err, livro) => {
+                            if (err) return callback(err);
+                            locals.livro = livro;
+                            callback();
+                        });
+                }
+        }, function(err) { 
+                if (err)
+                    res.json(0).status(500);
+                else   
+                    res.render('atualizar-livro', {livro: locals.livro,listaDeAutores: locals.autores})   
             }
-        ], function(err) { //This function gets called after the two tasks have called their "task callbacks"
-            if (err) return next(err); //If an error occurred, we let express handle it by calling the `next` function
-            //Here `locals` will be an object with `user` and `posts` keys
-            //Example: `locals = {user: ..., posts: [...]}`
-    
-            res.render('atualizar-livro', {livro: locals.livro,listaDeAutores: locals.autores})   
-    })};
-
-
-
-    // // Método "select")"
-    // static listarLivroPorID = (req, res) => { 
-    //     const id = req.query.id
-    //     let testeLivro;
-    //     livros.findById(id) // Procura pelo ID
-    //     .exec((err, livro) => {
-    //         if(err)
-    //             res.json(0).status(400)
-    //         else{
-    //             testeLivro = livro;
-    //         }
-    //     });
-        
-    //     autores.find() // Busca os dados
-    //     .exec((err, autores) => { 
-    //         if(err)
-    //             res.status(500).send({message: `${err.message} - falha ao listar livros.`})
-    //         else{
-    //             res.render('atualizar-livro', {
-    //                 listaDeAutores: autores,
-    //                 testeLivro
-    //             })
-    //         }
-    //     });       
-
-    // }
-
-    // // Método "select where editora = <editora>"
-    // static listarLivroPorEditora = (req, res) => {
-    //     const editora = req.query.editora
-
-    //     livros.find({'editora': editora}, {}, (err, livros) => { // Procura onde o atributo 'editora' for igual ao retorno da query da requisição
-    //         if(err)
-    //             res.status(500).send({message: `${err.message} - falha ao listar livros.`})
-    //         else            
-    //             res.status(200).send(livros) 
-    //     })
-    // }
+        )
+    };
 
     // Método "insert"
     static cadastrarLivro = (req, res) => {       

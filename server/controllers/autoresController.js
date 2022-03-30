@@ -9,20 +9,20 @@ class AutorController{
             if(err)
                 res.status(500).send({message: `${err.message} - falha ao listar autores.`})
             else{
-                res.render('lista-autor', {
+                res.render('autor-listagem', {
                     listaDeAutores: autores
                 })
             }
         });       
     }
 
-    static loadComboAutor = (req, res) => { 
+    static listarAutorCombo = (req, res) => { 
         autores.find() // Busca os dados
         .exec((err, autores) => { 
             if(err)
                 res.status(500).send({message: `${err.message} - falha ao listar livros.`})
             else{
-                res.render('cadastrar-livro', {
+                res.render('livro-cadastro', {
                     listaDeAutores: autores
                 })
             }
@@ -36,7 +36,7 @@ class AutorController{
             if(err)
                 res.json(0).status(400);
             else
-                res.render('atualizar-autor', {autor})   
+                res.render('autor-atualizacao', {autor})   
         });
     }
 

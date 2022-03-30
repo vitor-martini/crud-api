@@ -1,6 +1,6 @@
 import express from "express";
-import livros from "./livrosRoutes.js";
-import autores from "./autoresRoutes.js";
+import livro from "./livroRoutes.js";
+import autor from "./autorRoutes.js";
 import dotenv from 'dotenv';
 
 dotenv.config({path:'config.env'})
@@ -12,14 +12,14 @@ const routes = (app) =>{ // Para  cada rota do app
         res.render('index');
     })
 
-    app.route('/cadastrar-autor').get((req, res) => {
-        res.render('cadastrar-autor');
+    app.route('/autor-cadastro').get((req, res) => {
+        res.render('autor-cadastro');
     })
 
     app.use( // Encaminha para as outras rotas
         express.json(), //Habilita a leitura de JSON
-        livros,
-        autores
+        livro,
+        autor
     )
 }
 

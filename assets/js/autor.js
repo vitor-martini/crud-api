@@ -4,7 +4,7 @@ $("#add_autor").submit(function(event){
     event.preventDefault();
 
     $.ajax({
-        url: `http://localhost:${port}/cadastrar-autor`,
+        url: `http://localhost:${port}/autor-cadastro`,
         type: `POST`,
         data: {
             nome: $("input[name=nome]").val(),
@@ -26,7 +26,7 @@ $("#update_autor").submit(function(event){
     const ID = $("input[name=id]").val()
     
     $.ajax({
-        url: `http://localhost:${port}/atualizar-autor?id=${ID}`,
+        url: `http://localhost:${port}/autor-atualizacao?id=${ID}`,
         type: `PUT`,
         data: {            
             nome: $("input[name=nome]").val(),
@@ -37,7 +37,7 @@ $("#update_autor").submit(function(event){
                 alert("Falha ao atualizar o autor.")
             else{                
                 alert("Autor atualizado com sucesso.");
-                window.location = ('/lista-autor') 
+                window.location = ('/autor-listagem') 
             }         
         }
     })    
@@ -45,13 +45,13 @@ $("#update_autor").submit(function(event){
 
 $(".botao_autor").click(function(){
     $.ajax({
-        url: `http://localhost:${port}/lista-autor`,
+        url: `http://localhost:${port}/autor-listagem`,
         type: `GET`,
         success:function(response){
             if(response == 0)
                 alert("Falha ao carregar autores.")
             else{                
-                window.location.href = (`http://localhost:${port}/lista-autor`)   
+                window.location.href = (`http://localhost:${port}/autor-listagem`)   
             }         
         }
     })
@@ -60,7 +60,7 @@ $(".botao_autor").click(function(){
 $(".botao_deletar_autor").click(function(){
     var ID = $(this).attr("data-id")
     $.ajax({
-        url: `http://localhost:${port}/excluir-autor/${ID}`,
+        url: `http://localhost:${port}/autor-exclusao/${ID}`,
         type: `DELETE`,
         success:function(response){
             switch (response) {
@@ -86,17 +86,17 @@ $(".botao_editar_autor").click(function(){
     var ID = $(this).attr("data-id")
     
     $.ajax({
-        url: `http://localhost:${port}/atualizar-autor?id=${ID}`,
+        url: `http://localhost:${port}/autor-atualizacao?id=${ID}`,
         type: `GET`,
         success:function(response){               
             if(response == 0)
                 alert("Falha ao consultar dados do autor.")   
             else
-                window.location.href = (`http://localhost:${port}/atualizar-autor?id=${ID}`)                  
+                window.location.href = (`http://localhost:${port}/autor-atualizacao?id=${ID}`)                  
         }
     })
 })
 
 $(".botao_cadastrar_autor").click(function(){  
-    window.location.href = (`http://localhost:${port}/cadastrar-autor`)   
+    window.location.href = (`http://localhost:${port}/autor-cadastro`)   
 })

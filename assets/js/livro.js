@@ -6,7 +6,7 @@ $("#add_book").submit(function(event){
     const ativo = ($('input[name="status"]:checked').val() == 'Ativo') ? true : false;
 
     $.ajax({
-        url: `http://localhost:${port}/cadastrar-livro`,
+        url: `http://localhost:${port}/livro-cadastro`,
         type: `POST`,
         data: {
             titulo: $("input[name=titulo]").val(),
@@ -32,7 +32,7 @@ $("#update_book").submit(function(event){
     const ativo = ($('input[name="status"]:checked').val() == 'Ativo') ? true : false;
     
     $.ajax({
-        url: `http://localhost:${port}/atualizar-livro?id=${ID}`,
+        url: `http://localhost:${port}/livro-atualizacao?id=${ID}`,
         type: `PUT`,
         data: {            
             titulo: $("input[name=titulo]").val(),
@@ -46,7 +46,7 @@ $("#update_book").submit(function(event){
                 alert("Falha ao atualizar o livro.")
             else{                
                 alert("Livro atualizado com sucesso.");
-                window.location = ('/lista-livro') 
+                window.location = ('/livro-listagem') 
             }         
         }
     })    
@@ -54,13 +54,13 @@ $("#update_book").submit(function(event){
 
 $(".botao_livro").click(function(){
     $.ajax({
-        url: `http://localhost:${port}/lista-livro`,
+        url: `http://localhost:${port}/livro-listagem`,
         type: `GET`,
         success:function(response){
             if(response == 0)
                 alert("Falha ao carregar livros.")
             else{                
-                window.location.href = (`http://localhost:${port}/lista-livro`)   
+                window.location.href = (`http://localhost:${port}/livro-listagem`)   
             }         
         }
     })
@@ -69,7 +69,7 @@ $(".botao_livro").click(function(){
 $(".botao_deletar").click(function(){
     var ID = $(this).attr("data-id")
     $.ajax({
-        url: `http://localhost:${port}/excluir-livro/${ID}`,
+        url: `http://localhost:${port}/livro-exclusao/${ID}`,
         type: `DELETE`,
         success:function(response){
             if(response == 0)
@@ -86,13 +86,13 @@ $(".botao_editar").click(function(){
     var ID = $(this).attr("data-id")
 
     $.ajax({
-        url: `http://localhost:${port}/atualizar-livro?id=${ID}`,
+        url: `http://localhost:${port}/livro-atualizacao?id=${ID}`,
         type: `GET`,
         success:function(response){               
             if(response == 0)
                 alert("Falha ao consultar dados do livro.")   
             else
-                window.location.href = (`http://localhost:${port}/atualizar-livro?id=${ID}`)                  
+                window.location.href = (`http://localhost:${port}/livro-atualizacao?id=${ID}`)                  
         }
     })
 })
@@ -100,13 +100,13 @@ $(".botao_editar").click(function(){
 $(".botao_cadastrar").click(function(){  
 
     $.ajax({
-        url: `http://localhost:${port}/cadastrar-livro`,
+        url: `http://localhost:${port}/livro-cadastro`,
         type: `GET`,
         success:function(response){               
             if(response == 0)
                 alert("Falha ao consultar dados do autor.")   
             else
-                window.location.href = (`http://localhost:${port}/cadastrar-livro`)   
+                window.location.href = (`http://localhost:${port}/livro-cadastro`)   
         }
     })
 })

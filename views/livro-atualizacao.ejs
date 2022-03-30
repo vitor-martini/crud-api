@@ -22,47 +22,45 @@
         <div class="container">
             <div class="box-nav d-flex-justufy-between">
                 <div class="filter">
-                    <a href="/lista-livro"><i class="fas fa-angle-double-left"></i> Todos os livros</a>
+                    <a href="/livro-listagem"><i class="fas fa-angle-double-left"></i> Todos os livros</a>
                 </div>                
             </div>
             <div class="form-title text-center">
-                <h2 class="text-dark">Novo Livro</h2>
-                <span class="text-light">Utilize o formulário abaixo para cadastrar um novo livro</span>
+                <h2 class="text-dark">Atualizar Livro</h2>
+                <span class="text-light">Utilize o formulário abaixo para atualizar o livro</span>
             </div>     
 
-            <form action="" method="POST" id="add_book">
+            <form action="" method="POST" id="update_book">
                 <div class="new_book">
                     <div class="form-group">
                         <label for="titulo" class="text-light">Título</label>
-                        <input type="hidden" name="id" value = "">
-                        <input type="text" name="titulo" value="">
-                    </div>
-
+                        <input type="hidden" name="id" value = "<%= livro._id%>">
+                        <input type="text" name="titulo" value="<%= livro.titulo%>">
+                    </div>                    
                     <div class="form-group">
                         <label for="autor" class="text-light">Autor</label>
-                        <select name="autor" class="formulario__elemento select">
+                        <select name="autor" value="<%= livro.autor%>" class="formulario__elemento select">
                             <% for(var i = 0; i < listaDeAutores.length; i++){%>
-                            <option value="<%= listaDeAutores[i]._id%>"><%= listaDeAutores[i].nome%></option>
-                            <% }%>
+                            <option value="<%= listaDeAutores[i]._id%>" <%=(listaDeAutores[i]._id.toString() == livro.autor.toString()) ? "selected" : ""%>><%= listaDeAutores[i].nome%></option>
+                            <% }%>          
                         </select>
                     </div>
-
                     <div class="form-group">
-                        <label for="editora" class="text-light">Editor</label>
-                        <input type="text" name="editora" value="">
+                        <label for="editora" class="text-light">Editora</label>
+                        <input type="text" name="editora" value="<%= livro.editora%>">
                     </div>
                     <div class="form-group">
                         <label for="numero-paginas" class="text-light">N° de Páginas</label>
-                        <input type="number" name="numeroPaginas" value="">
-                    </div> 
+                        <input type="number" name="numero-paginas" value="<%= livro.numeroPaginas%>">
+                    </div>                     
                     <div class="form-group">
                         <label for="status" class="radio-label">Status</label>
                         <div class="radio inline">
-                            <input type="radio" id="radio-4" name="status" value="Ativo">
+                            <input type="radio" id="radio-4" name="status" value="Ativo" <%=(livro.status == true) ? "checked" : ""%>>
                             <label for="radio-4" class="radio-label">Ativo</label>
                         </div>
                         <div class="radio inline">
-                            <input type="radio" id="radio-5" name="status" value="Inativo">
+                            <input type="radio" id="radio-5" name="status" value="Inativo" <%=(livro.status == false) ? "checked" : ""%>>
                             <label for="radio-5" class="radio-label">Inativo</label>
                         </div>
                     </div>
@@ -75,7 +73,7 @@
 
         </div>
 
-    </main>
+    </main>    
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="/js/livro.js"></script>
 </body>

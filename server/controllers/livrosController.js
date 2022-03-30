@@ -1,10 +1,6 @@
 import livros from "../models/Livro.js"; // Importando o Schema de livros
 import autores from "../models/Autor.js";
-import dotenv from 'dotenv';
 import async from 'async';
-
-dotenv.config({path:'config.env'})
-const port = process.env.PORT || 8080;
 
 class LivroController{
 
@@ -16,7 +12,7 @@ class LivroController{
                 if(err)
                     res.status(500).send({message: `${err.message} - falha ao listar livros.`})
                 else{
-                    res.render('lista-livro', {
+                    res.render('livro-listagem', {
                         listaDeLivros: livros
                     })
                 }
@@ -24,7 +20,7 @@ class LivroController{
     }
 
     // Método "select")"
-    static listarLivroPorID = (req, res) => { 
+    static listarLivroEspecifico = (req, res) => { 
         var locals = {};
         async.parallel({
             autores: 
@@ -50,7 +46,10 @@ class LivroController{
                 if (err)
                     res.json(0).status(500);
                 else   
-                    res.render('atualizar-livro', {livro: locals.livro,listaDeAutores: locals.autores})   
+                    res.render('livro-atualizacao', {
+                        livro: locals.livro,
+                        listaDeAutores: locals.autores
+                    })   
             }
         )
     };

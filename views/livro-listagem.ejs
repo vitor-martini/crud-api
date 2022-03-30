@@ -1,72 +1,58 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="css/reset.css">
     <link rel="stylesheet" href="css/style.css">
+    <link rel="icon" href="img/book-solid.svg" type="image/x-icon" />
     <title>Livraria</title>
 </head>
 <body>
-    <header id="header">
+    <header class="cabecalho">
         <nav> 
-            <div class="container">
-                <div class="text-center">
-                    <a href="/" class="nav-brand text-dark">Livraria</a>
-                </div>
-            </div>
+            <a href="/">Livraria</a>
         </nav>  
     </header>
-    <main id="site-main">
-        <div class="container">
-            <div class="box-nav d-flex-justify-between">
-                <a   href="/livro-cadastro" class="border-shadow">
-                    <span class="text-gradient">Novo Livro<i class="fa-solid fa-book"></i></span>
-                </a>
-            </div>
-        </div>
-
+    <main>
+        <a href="/livro-cadastro" class="fa-solid fa-plus botao__cadastro"></a> 
         <form>
-            <table class="table">
-                <thead class="thead-dark">
+            <table class="tabela">
+                <thead class="tabela__cabecalho">
                     <tr>
-                        <th>ID</th>
-                        <th>Titulo</th>
-                        <th>Autor</th>
-                        <th>Editora</th>
-                        <th>N° de Páginas</th>
-                        <th>Status</th>
-                        <th>Ação</th>
+                        <th class="tabela__celula">ID</th>
+                        <th class="tabela__celula">Titulo</th>
+                        <th class="tabela__celula">Autor</th>
+                        <th class="tabela__celula">Editora</th>
+                        <th class="tabela__celula">N° de Páginas</th>
+                        <th class="tabela__celula">Status</th>
+                        <th class="tabela__celula">Ação</th>
                     </tr>
                 </thead>
                 <tbody>                    
                     <% for(var i = 0; i < listaDeLivros.length; i++){%>
-                    <tr>
-                        <td><%= i + 1%></td>
-                        <td><%= listaDeLivros[i].titulo%></td>
-                        <td><%= listaDeLivros[i].autor.nome%></td>
-                        <td><%= listaDeLivros[i].editora%></td>
-                        <td><%= listaDeLivros[i].numeroPaginas%></td>
-                        <td><%= (listaDeLivros[i].status == true) ? 'Ativo' : 'Inativo'%></td>
-                        <td>
-                            <a href="<%='/livro-atualizacao?id='+listaDeLivros[i]._id%>">
-                                <span class="text-gradient"><i class="fas fa-pencil-alt"></i></span>
+                    <tr class="tabela__linha">
+                        <td class="tabela__celula"><%= i + 1%></td>
+                        <td class="tabela__celula esquerda"><%= listaDeLivros[i].titulo%></td>
+                        <td class="tabela__celula esquerda"><%= listaDeLivros[i].autor.nome%></td>
+                        <td class="tabela__celula"><%= listaDeLivros[i].editora%></td>
+                        <td class="tabela__celula"><%= listaDeLivros[i].numeroPaginas%></td>
+                        <td class="tabela__celula"><%= (listaDeLivros[i].status == true) ? 'Ativo' : 'Inativo'%></td>
+                        <td class="tabela__celula">
+                            <a class="atualizar" href="<%='/livro-atualizacao?id='+listaDeLivros[i]._id%>">
+                                <span><i class="fas fa-pencil-alt"></i></span>
                             </a>
                             <a class="excluir" data-id="<%= listaDeLivros[i]._id%>">
-                                <span class="text-gradient"><i class="fa-solid fa-trash-can"></i></span>
-                            </a>
-                                
+                                <span><i class="fa-solid fa-trash-can"></i></span>
+                            </a>                                
                         </td>
                     </tr>
                     <% }%>
                 </tbody>
             </table>
-
         </form>
-
-
-
     </main>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="/js/livro.js"></script>

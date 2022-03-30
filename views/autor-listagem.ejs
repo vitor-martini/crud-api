@@ -1,50 +1,41 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="css/reset.css">
     <link rel="stylesheet" href="css/style.css">
+    <link rel="icon" href="img/book-solid.svg" type="image/x-icon" />
     <title>Livraria</title>
 </head>
 <body>
-    <header id="header">
+    <header class="cabecalho">
         <nav> 
-            <div class="container">
-                <div class="text-center">
-                    <a href="/" class="nav-brand text-dark">Livraria</a>
-                </div>
-            </div>
+            <a href="/">Livraria</a>
         </nav>  
     </header>
-    <main id="site-main">
-        <div class="container">
-            <div class="box-nav d-flex-justify-between">
-                <a  href="/autor-cadastro" class="border-shadow">
-                    <span class="text-gradient">Novo Autor<i class="fa-solid fa-book"></i></span>
-                </a>
-            </div>
-        </div>
-
+    <main>
+        <a href="/autor-cadastro" class="fa-solid fa-plus botao__cadastro"></a> 
         <form>
-            <table class="table">
-                <thead class="thead-dark">
+            <table class="tabela">
+                <thead class="tabela__cabecalho">
                     <tr>
-                        <th>ID</th>
-                        <th>Autor</th>
-                        <th>Nacionalidade</th>
-                        <th>Ação</th>
+                        <th class="tabela__celula">ID</th>
+                        <th class="tabela__celula">Autor</th>
+                        <th class="tabela__celula">Nacionalidade</th>
+                        <th class="tabela__celula">Ação</th>
                     </tr>
                 </thead>
                 <tbody>                    
                     <% for(var i = 0; i < listaDeAutores.length; i++){%>
-                    <tr>
-                        <td><%= i + 1%></td>
-                        <td><%= listaDeAutores[i].nome%></td>
-                        <td><%= listaDeAutores[i].nacionalidade%></td>
-                        <td>
-                            <a href="<%='/autor-atualizacao?id='+listaDeAutores[i]._id%>">
+                    <tr class="tabela__linha">
+                        <td class="tabela__celula"><%= i + 1%></td>
+                        <td class="tabela__celula"><%= listaDeAutores[i].nome%></td>
+                        <td class="tabela__celula"><%= listaDeAutores[i].nacionalidade%></td>
+                        <td class="tabela__celula">
+                            <a class="atualizar" href="<%='/autor-atualizacao?id='+listaDeAutores[i]._id%>">
                                 <span class="text-gradient"><i class="fas fa-pencil-alt"></i></span>
                             </a>
                             <a class="excluir" data-id="<%= listaDeAutores[i]._id%>">

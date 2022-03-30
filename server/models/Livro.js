@@ -7,7 +7,8 @@ const livroSchema = new mongoose.Schema(
         titulo: {type: String, required: true},
         autor: {type: mongoose.Schema.Types.ObjectId, ref: 'autores', required: true}, // Incluindo a referencia ao esquema de autores
         editora: {type: String, required: true},
-        numeroPaginas: {type: Number}
+        numeroPaginas: {type: Number},
+        status: {type: Boolean, required: true}
     }
 );
 

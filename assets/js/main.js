@@ -1,5 +1,8 @@
 $("#add_book").submit(function(event){
     event.preventDefault();
+
+    const ativo = ($('input[name="status"]:checked').val() == 'Ativo') ? true : false;
+
     $.ajax({
         url: `http://localhost:3000/cadastrar-livro`,
         type: `POST`,
@@ -8,8 +11,9 @@ $("#add_book").submit(function(event){
             autor: $("select[name=autor]").val(),
             editora: $("input[name=editora]").val(),
             numeroPaginas: $("input[name=numeroPaginas]").val(),
+            status: ativo
         },
-        success:function(response){
+        success:function(response){            
             if(response == 0)
                 alert("Falha ao cadastrar o livro.")
             else{
@@ -22,8 +26,9 @@ $("#add_book").submit(function(event){
 
 $("#update_book").submit(function(event){
     event.preventDefault();
-    var ID = $("input[name=id]").val()
-
+    const ID = $("input[name=id]").val()
+    const ativo = ($('input[name="status"]:checked').val() == 'Ativo') ? true : false;
+    
     $.ajax({
         url: `http://localhost:3000/atualizar-livro?id=${ID}`,
         type: `PUT`,
@@ -32,6 +37,7 @@ $("#update_book").submit(function(event){
             autor: $("select[name=autor]").val(),
             editora: $("input[name=editora]").val(),
             numeroPaginas: $("input[name=numeroPaginas]").val(),
+            status: ativo
         },
         success:function(response){
             if(response == 0)

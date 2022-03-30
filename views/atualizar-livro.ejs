@@ -52,7 +52,18 @@
                     <div class="form-group">
                         <label for="numero-paginas" class="text-light">N° de Páginas</label>
                         <input type="number" name="numero-paginas" value="<%= livro.numeroPaginas%>">
-                    </div> 
+                    </div>                     
+                    <div class="form-group">
+                        <label for="status" class="radio-label">Status</label>
+                        <div class="radio inline">
+                            <input type="radio" id="radio-4" name="status" value="Ativo" <%=(livro.status == true) ? "checked" : ""%>>
+                            <label for="radio-4" class="radio-label">Ativo</label>
+                        </div>
+                        <div class="radio inline">
+                            <input type="radio" id="radio-5" name="status" value="Inativo" <%=(livro.status == false) ? "checked" : ""%>>
+                            <label for="radio-5" class="radio-label">Inativo</label>
+                        </div>
+                    </div>
                     <div class="form-group">                       
                         <button type="submit" class="btn text-dark update">Salvar</button>
                     </div>

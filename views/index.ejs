@@ -37,6 +37,7 @@
                         <th>Autor</th>
                         <th>Editora</th>
                         <th>N° de Páginas</th>
+                        <th>Status</th>
                         <th>Ação</th>
                     </tr>
                 </thead>
@@ -48,6 +49,7 @@
                         <td><%= listaDeLivros[i].autor.nome%></td>
                         <td><%= listaDeLivros[i].editora%></td>
                         <td><%= listaDeLivros[i].numeroPaginas%></td>
+                        <td><%= (listaDeLivros[i].status == true) ? 'Ativo' : 'Inativo'%></td>
                         <td>
                             <a class="botao_editar" data-id="<%= listaDeLivros[i]._id%>">
                                 <span class="text-gradient"><i class="fas fa-pencil-alt"></i></span>

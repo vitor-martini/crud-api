@@ -61,7 +61,8 @@ class LivroController{
             titulo: req.body.titulo,
             autor: req.body.autor,
             editora: req.body.editora,
-            numeroPaginas: req.body.numeroPaginas
+            numeroPaginas: req.body.numeroPaginas,
+            status: req.body.status
         }); // Recebe o json do corpo da requisição
 
         livro.save(err => { // Salva no banco
@@ -74,8 +75,7 @@ class LivroController{
  
     // Método "update"
     static atualizarLivro = (req, res) => {
-        const id = req.query.id;    
-  
+        const id = req.query.id;     
         livros.findByIdAndUpdate(id, {$set: req.body}, err =>{ //Procura o registro pelo ID e o atualiza conforme o json enviado
             if(err)
                 res.json(0).status(500);

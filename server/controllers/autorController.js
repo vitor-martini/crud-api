@@ -7,7 +7,7 @@ class AutorController{
         Autor.find()
         .exec((err, Autor) => { 
             if(err)
-                res.status(500);
+                res.status(500).send({message: `${err.message} - Não foi possível carregar os autores.`});
             else{
                 res.render('autor-listagem', {
                     listaDeAutores: Autor
@@ -20,7 +20,7 @@ class AutorController{
         Autor.find() 
         .exec((err, Autor) => { 
             if(err)
-                res.status(500);
+                res.status(500).send({message: `${err.message} - Não foi possível carregar os autores.`});
             else{
                 res.render('livro-cadastro', {
                     listaDeAutores: Autor
@@ -34,7 +34,7 @@ class AutorController{
 
         Autor.findById(id, (err, autor) => { 
             if(err)
-                res.json(0).status(400);
+                res.status(400).send({message: `${err.message} - Não foi possível carregar o autor.`});
             else
                 res.render('autor-atualizacao', {autor})   
         });

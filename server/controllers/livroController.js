@@ -9,7 +9,7 @@ class LivroController{
             .populate('autor', 'nome') 
             .exec((err, livro) => { 
                 if(err)
-                    res.status(500)
+                    res.status(500).send({message: `${err.message} - Não foi possível carregar os livros.`});
                 else{
                     res.render('livro-listagem', {
                         listaDeLivros: livro
@@ -42,7 +42,7 @@ class LivroController{
                 }
         }, function(err) { 
                 if (err)
-                    res.json(0).status(500);
+                    res.status(500).send({message: `${err.message} - Não foi possível carregar o livro.`});
                 else   
                     res.render('livro-atualizacao', {
                         livro: locals.livro,

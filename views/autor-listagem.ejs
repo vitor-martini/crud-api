@@ -21,7 +21,7 @@
     <main id="site-main">
         <div class="container">
             <div class="box-nav d-flex-justify-between">
-                <a  class="botao_cadastrar_autor" class="border-shadow">
+                <a  href="/autor-cadastro" class="border-shadow">
                     <span class="text-gradient">Novo Autor<i class="fa-solid fa-book"></i></span>
                 </a>
             </div>
@@ -44,13 +44,12 @@
                         <td><%= listaDeAutores[i].nome%></td>
                         <td><%= listaDeAutores[i].nacionalidade%></td>
                         <td>
-                            <a class="botao_editar_autor" data-id="<%= listaDeAutores[i]._id%>">
+                            <a href="<%='/autor-atualizacao?id='+listaDeAutores[i]._id%>">
                                 <span class="text-gradient"><i class="fas fa-pencil-alt"></i></span>
                             </a>
-                            <a class="botao_deletar_autor" data-id="<%= listaDeAutores[i]._id%>">
+                            <a class="excluir" data-id="<%= listaDeAutores[i]._id%>">
                                 <span class="text-gradient"><i class="fa-solid fa-trash-can"></i></span>
-                            </a>
-                                
+                            </a>                                
                         </td>
                     </tr>
                     <% }%>

@@ -1,6 +1,6 @@
 const port = window.location.href.substring(17, 21);
 
-$('#add_autor').submit(function(event){
+$('.cadastrar').submit(function(event){
     event.preventDefault();
 
     $.ajax({
@@ -21,7 +21,7 @@ $('#add_autor').submit(function(event){
     })    
 })
 
-$('#update_autor').submit(function(event){
+$('.atualizar').submit(function(event){
     event.preventDefault();
     const ID = $('input[name=id]').val();
     
@@ -43,21 +43,7 @@ $('#update_autor').submit(function(event){
     })    
 })
 
-$('.botao_autor').click(function(){
-    $.ajax({
-        url: `http://localhost:${port}/autor-listagem`,
-        type: 'GET',
-        success:function(response){
-            if(response == 0)
-                alert('Falha ao carregar autores.');
-            else{                
-                window.location.href = (`http://localhost:${port}/autor-listagem`);
-            }         
-        }
-    })
-})
-
-$('.botao_deletar_autor').click(function(){
+$('.excluir').click(function(){
     const ID = $(this).attr('data-id');
     
     $.ajax({
@@ -83,21 +69,3 @@ $('.botao_deletar_autor').click(function(){
     })
 })
 
-$('.botao_editar_autor').click(function(){
-    const ID = $(this).attr('data-id');
-    
-    $.ajax({
-        url: `http://localhost:${port}/autor-atualizacao?id=${ID}`,
-        type: 'GET',
-        success:function(response){               
-            if(response == 0)
-                alert('Falha ao consultar dados do autor.');
-            else
-                window.location.href = (`http://localhost:${port}/autor-atualizacao?id=${ID}`);              
-        }
-    })
-})
-
-$('.botao_cadastrar_autor').click(function(){  
-    window.location.href = (`http://localhost:${port}/autor-cadastro`); 
-})

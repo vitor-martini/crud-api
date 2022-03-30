@@ -1,6 +1,6 @@
 const port = window.location.href.substring(17, 21);
 
-$('#add_book').submit(function(event){
+$('.cadastrar').submit(function(event){
     event.preventDefault();
     const ativo = ($('input[name=status]:checked').val() == 'Ativo') ? true : false;
 
@@ -25,7 +25,7 @@ $('#add_book').submit(function(event){
     })    
 })
 
-$('#update_book').submit(function(event){
+$('.atualizar').submit(function(event){
     event.preventDefault();
     const ID = $('input[name=id]').val();
     const ativo = ($('input[name=status]:checked').val() == 'Ativo') ? true : false;
@@ -51,21 +51,7 @@ $('#update_book').submit(function(event){
     })    
 })
 
-$('.botao_livro').click(function(){
-    $.ajax({
-        url: `http://localhost:${port}/livro-listagem`,
-        type: 'GET',
-        success:function(response){
-            if(response == 0)
-                alert('Falha ao carregar livros.');
-            else{                
-                window.location.href = (`http://localhost:${port}/livro-listagem`);   
-            }         
-        }
-    })
-})
-
-$('.botao_deletar').click(function(){
+$('.excluir').click(function(){
     const ID = $(this).attr('data-id')
     $.ajax({
         url: `http://localhost:${port}/livro-exclusao/${ID}`,
@@ -81,31 +67,4 @@ $('.botao_deletar').click(function(){
     })
 })
 
-$('.botao_editar').click(function(){
-    const ID = $(this).attr('data-id');
 
-    $.ajax({
-        url: `http://localhost:${port}/livro-atualizacao?id=${ID}`,
-        type: 'GET',
-        success:function(response){               
-            if(response == 0)
-                alert('Falha ao consultar dados do livro.');   
-            else
-                window.location.href = (`http://localhost:${port}/livro-atualizacao?id=${ID}`);                  
-        }
-    })
-})
-
-$('.botao_cadastrar').click(function(){  
-
-    $.ajax({
-        url: `http://localhost:${port}/livro-cadastro`,
-        type: 'GET',
-        success:function(response){               
-            if(response == 0)
-                alert('Falha ao consultar dados do autor.');
-            else
-                window.location.href = (`http://localhost:${port}/livro-cadastro`);   
-        }
-    })
-})

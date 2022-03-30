@@ -1,38 +1,38 @@
-import autores from "../models/Autor.js";
-import livros from "../models/Livro.js"; // Importando o Schema de livros
+import Autor from '../models/Autor.js';
+import Livro from '../models/Livro.js'; 
 
 class AutorController{ 
 
     static listarAutor = (req, res) => { 
-        autores.find() // Busca os dados
-        .exec((err, autores) => { 
+        Autor.find()
+        .exec((err, Autor) => { 
             if(err)
-                res.status(500).send({message: `${err.message} - falha ao listar autores.`})
+                res.status(500);
             else{
                 res.render('autor-listagem', {
-                    listaDeAutores: autores
-                })
+                    listaDeAutores: Autor
+                });
             }
         });       
     }
 
     static listarAutorCombo = (req, res) => { 
-        autores.find() // Busca os dados
-        .exec((err, autores) => { 
+        Autor.find() 
+        .exec((err, Autor) => { 
             if(err)
-                res.status(500).send({message: `${err.message} - falha ao listar livros.`})
+                res.status(500);
             else{
                 res.render('livro-cadastro', {
-                    listaDeAutores: autores
-                })
+                    listaDeAutores: Autor
+                });
             }
         });       
     }
 
-    static listarAutorPorID = (req, res) => { 
+    static listarAutorEspecifico = (req, res) => { 
         const id = req.query.id;
 
-        autores.findById(id, (err, autor) => { 
+        Autor.findById(id, (err, autor) => { 
             if(err)
                 res.json(0).status(400);
             else
@@ -41,44 +41,44 @@ class AutorController{
     }
 
     static cadastrarAutor = (req, res) => {
-        let autor = new autores(req.body);
+        let autor = new Autor(req.body);
         
         autor.save(err => {
             if(err)
                 res.json(0).status(500);
             else
                 res.json(1).status(201);
-        })
+        });
     }
 
     static atualizarAutor = (req, res) => {
         const id = req.query.id;
 
-        autores.findByIdAndUpdate(id, {$set: req.body}, err =>{
+        Autor.findByIdAndUpdate(id, {$set: req.body}, err =>{
             if(err)
                 res.json(0).status(500);
             else
                 res.json(1).status(201);
-        })
+        });
     }
 
     static excluirAutor = (req, res) => {
         const id = req.params.id;
 
-        livros.count({autor: id}, (err, resultado) => {
+        Livro.count({autor: id}, (err, resultado) => {
             if(err)
                 res.json(0).status(500);
             else if(resultado > 0){
                 res.json(3).status(500);   
             } else {
-                autores.findByIdAndDelete(id, err => { //Procura o registro pelo ID e o exclui
+                Autor.findByIdAndDelete(id, err => { 
                     if(err)
                         res.json(1).status(500);
                     else
                         res.json(2).status(201);
-                })
+                });
             }
-        })
+        });
     }
 
 }

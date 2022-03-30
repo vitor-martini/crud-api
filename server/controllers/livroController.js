@@ -1,41 +1,39 @@
-import livros from "../models/Livro.js"; // Importando o Schema de livros
-import autores from "../models/Autor.js";
+import Livro from '../models/Livro.js'; 
+import Autor from '../models/Autor.js';
 import async from 'async';
 
 class LivroController{
 
-    // Método "select")"
     static listarLivro = (req, res) => { 
-        livros.find() // Busca os dados
-            .populate('autor', 'nome') // Traz somente o nome do autor, não todos os dados como o método listarLivros
-            .exec((err, livros) => { 
+        Livro.find() 
+            .populate('autor', 'nome') 
+            .exec((err, livro) => { 
                 if(err)
-                    res.status(500).send({message: `${err.message} - falha ao listar livros.`})
+                    res.status(500)
                 else{
                     res.render('livro-listagem', {
-                        listaDeLivros: livros
-                    })
+                        listaDeLivros: livro
+                    });
                 }
             });        
     }
 
-    // Método "select")"
     static listarLivroEspecifico = (req, res) => { 
-        var locals = {};
+        let locals = {};
         async.parallel({
-            autores: 
+            autor: 
                 function(callback) {
-                    autores.find() // Procura pelo ID
-                        .exec((err, autores) => {
+                    Autor.find() 
+                        .exec((err, autor) => {
                             if (err) return callback(err);
-                            locals.autores = autores;
+                            locals.autor = autor;
                             callback();
                         });
                 },
-            livros: 
+            livro: 
                 function(callback) {
-                    const id = req.query.id
-                    livros.findById(id) // Procura pelo ID
+                    const id = req.query.id;  
+                    Livro.findById(id) 
                         .exec((err, livro) => {
                             if (err) return callback(err);
                             locals.livro = livro;
@@ -48,52 +46,49 @@ class LivroController{
                 else   
                     res.render('livro-atualizacao', {
                         livro: locals.livro,
-                        listaDeAutores: locals.autores
-                    })   
+                        listaDeAutores: locals.autor,
+                    });  
             }
-        )
+        );
     };
 
-    // Método "insert"
     static cadastrarLivro = (req, res) => {       
-        let livro = new livros({
+        const livro = new Livro({
             titulo: req.body.titulo,
             autor: req.body.autor,
             editora: req.body.editora,
             numeroPaginas: req.body.numeroPaginas,
-            status: req.body.status
-        }); // Recebe o json do corpo da requisição
+            status: req.body.status,
+        }); 
 
-        livro.save(err => { // Salva no banco
+        livro.save(err => { 
             if(err)
                 res.json(0).status(500);
             else   
                 res.json(1).status(201); 
-        })
+        });
     }
  
-    // Método "update"
     static atualizarLivro = (req, res) => {
         const id = req.query.id;   
   
-        livros.findByIdAndUpdate(id, {$set: req.body}, err =>{ //Procura o registro pelo ID e o atualiza conforme o json enviado
+        Livro.findByIdAndUpdate(id, {$set: req.body}, err =>{ 
             if(err)
                 res.json(0).status(500);
             else
                 res.json(1).status(201);
-        })
+        });
     }
 
-    // Método delete
     static excluirLivro = (req, res) => {
         const id = req.params.id;
 
-        livros.findByIdAndDelete(id, err => { //Procura o registro pelo ID e o exclui
+        Livro.findByIdAndDelete(id, err => { 
             if(err)
                 res.json(0).status(500);
             else
                 res.json(1).status(201);
-        })
+        });
     }
 }
 

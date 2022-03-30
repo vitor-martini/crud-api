@@ -41,7 +41,7 @@
                         <label for="autor" class="text-light">Autor</label>
                         <select name="autor" value="<%= livro.autor%>" class="formulario__elemento select">
                             <% for(var i = 0; i < listaDeAutores.length; i++){%>
-                            <option value="<%= listaDeAutores[i]._id%>" <%=(listaDeAutores[i]._id.toString() == livro.autor.toString()) ? "selected" : ""%>><%= listaDeAutores[i].nome%></option>
+                            <option value="<%= listaDeAutores[i]._id%>" <%=(listaDeAutores[i]._id.toString() == livro.autor.toString()) ? 'selected' : ''%>><%= listaDeAutores[i].nome%></option>
                             <% }%>          
                         </select>
                     </div>
@@ -56,11 +56,11 @@
                     <div class="form-group">
                         <label for="status" class="radio-label">Status</label>
                         <div class="radio inline">
-                            <input type="radio" id="radio-4" name="status" value="Ativo" <%=(livro.status == true) ? "checked" : ""%>>
+                            <input type="radio" id="radio-4" name="status" value="Ativo" <%=(livro.status == true) ? 'checked' : ''%>>
                             <label for="radio-4" class="radio-label">Ativo</label>
                         </div>
                         <div class="radio inline">
-                            <input type="radio" id="radio-5" name="status" value="Inativo" <%=(livro.status == false) ? "checked" : ""%>>
+                            <input type="radio" id="radio-5" name="status" value="Inativo" <%=(livro.status == false) ? 'checked' : ''%>>
                             <label for="radio-5" class="radio-label">Inativo</label>
                         </div>
                     </div>

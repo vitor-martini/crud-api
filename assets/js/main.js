@@ -1,10 +1,12 @@
+const port = window.location.href.substring(17, 21);
+
 $("#add_book").submit(function(event){
     event.preventDefault();
 
     const ativo = ($('input[name="status"]:checked').val() == 'Ativo') ? true : false;
 
     $.ajax({
-        url: `http://localhost:3000/cadastrar-livro`,
+        url: `http://localhost:${port}/cadastrar-livro`,
         type: `POST`,
         data: {
             titulo: $("input[name=titulo]").val(),
@@ -30,7 +32,7 @@ $("#update_book").submit(function(event){
     const ativo = ($('input[name="status"]:checked').val() == 'Ativo') ? true : false;
     
     $.ajax({
-        url: `http://localhost:3000/atualizar-livro?id=${ID}`,
+        url: `http://localhost:${port}/atualizar-livro?id=${ID}`,
         type: `PUT`,
         data: {            
             titulo: $("input[name=titulo]").val(),
@@ -53,7 +55,7 @@ $("#update_book").submit(function(event){
 $(".botao_deletar").click(function(){
     var ID = $(this).attr("data-id")
     $.ajax({
-        url: `http://localhost:3000/excluir-livro/${ID}`,
+        url: `http://localhost:${port}/excluir-livro/${ID}`,
         type: `DELETE`,
         success:function(response){
             if(response == 0)
@@ -70,26 +72,29 @@ $(".botao_editar").click(function(){
     var ID = $(this).attr("data-id")
 
     $.ajax({
-        url: `http://localhost:3000/atualizar-livro?id=${ID}`,
+        url: `http://localhost:${port}/atualizar-livro?id=${ID}`,
         type: `GET`,
         success:function(response){               
             if(response == 0)
                 alert("Falha ao consultar dados do livro.")   
             else
-                window.location.href = (`http://localhost:3000/atualizar-livro?id=${ID}`)                  
+                window.location.href = (`http://localhost:${port}/atualizar-livro?id=${ID}`)                  
         }
     })
 })
 
 $(".botao_cadastrar").click(function(){  
+
+    console.log(`http://localhost:${port}/cadastrar-livro`)
+
     $.ajax({
-        url: `http://localhost:3000/cadastrar-livro`,
+        url: `http://localhost:${port}/cadastrar-livro`,
         type: `GET`,
         success:function(response){               
             if(response == 0)
                 alert("Falha ao consultar dados do autor.")   
             else
-                window.location.href = (`http://localhost:3000/cadastrar-livro`)   
+                window.location.href = (`http://localhost:${port}/cadastrar-livro`)   
         }
     })
 })

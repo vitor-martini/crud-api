@@ -7,7 +7,15 @@ dotenv.config({path:'config.env'})
 const port = process.env.PORT || 8080;
 
 const routes = (app) =>{ // Para  cada rota do app
-                    
+
+    app.route('/').get((req, res) => {
+        res.render('index');
+    })
+
+    app.route('/cadastrar-autor').get((req, res) => {
+        res.render('cadastrar-autor');
+    })
+
     app.use( // Encaminha para as outras rotas
         express.json(), //Habilita a leitura de JSON
         livros,

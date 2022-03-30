@@ -16,7 +16,7 @@ class LivroController{
                 if(err)
                     res.status(500).send({message: `${err.message} - falha ao listar livros.`})
                 else{
-                    res.render('index', {
+                    res.render('lista-livro', {
                         listaDeLivros: livros
                     })
                 }
@@ -75,7 +75,8 @@ class LivroController{
  
     // Método "update"
     static atualizarLivro = (req, res) => {
-        const id = req.query.id;     
+        const id = req.query.id;   
+  
         livros.findByIdAndUpdate(id, {$set: req.body}, err =>{ //Procura o registro pelo ID e o atualiza conforme o json enviado
             if(err)
                 res.json(0).status(500);

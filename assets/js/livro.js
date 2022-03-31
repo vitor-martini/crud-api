@@ -1,6 +1,14 @@
 const port = window.location.href.substring(17, 21);
 
-$('.cadastrar').submit(function(event){
+function verificarNumerico(event){
+    var charCode = (event.which) ? event.which : event.keyCode
+    if (charCode > 31 && (charCode < 48 || charCode > 57))
+        return false;
+    return true;
+}
+
+
+$('.formulario__cadastrar').submit(function(event){
     event.preventDefault();
     const ativo = ($('input[name=status]:checked').val() == 'Ativo') ? true : false;
 
@@ -25,7 +33,7 @@ $('.cadastrar').submit(function(event){
     })    
 })
 
-$('.atualizar').submit(function(event){
+$('.formulario__atualizar').submit(function(event){
     event.preventDefault();
     const ID = $('input[name=id]').val();
     const ativo = ($('input[name=status]:checked').val() == 'Ativo') ? true : false;
@@ -51,7 +59,7 @@ $('.atualizar').submit(function(event){
     })    
 })
 
-$('.excluir').click(function(){
+$('.botao__excluir').click(function(){
     const ID = $(this).attr('data-id')
     $.ajax({
         url: `http://localhost:${port}/livro-exclusao/${ID}`,

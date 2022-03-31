@@ -90,3 +90,57 @@ body{
 .atualizar, .excluir{
     padding: 0.25rem;
 }
+
+main{
+    margin: 2.5rem;
+}
+
+.botao__voltar{
+    font-size: 25px;
+    font-weight: bold;
+    margin: 5rem;
+}
+
+.cabecalho__secundario{
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    font-size: 25px;
+    font-weight: bold;
+    padding: 2rem;
+}
+
+.formulario__cadastrar, .formulario__atualizar {
+    border: 3px solid black;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    padding: 1rem;
+    margin: 0 30%;
+    font-size: 20px;
+}
+
+.formulario__input{
+    border: 1px solid black;
+    margin-bottom: 1rem;
+    font-size: 18px;
+}
+
+.formulario__label{
+    font-weight: bold;
+}
+
+.formulario__botao{
+    cursor: pointer;
+    border: 1px solid black;
+    background-color: lightgray;
+    font-weight: bold;
+    margin: 5% 30% 1% 30%;
+    padding: 0.5rem;
+    transition: all 500ms;
+}
+
+.formulario__botao:hover{
+    background-color: gray;
+}

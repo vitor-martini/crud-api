@@ -16,38 +16,26 @@
             <a href="/">Livraria</a>
         </nav>  
     </header>
-    <main id="site-main">
-        <div class="container">
-            <div class="box-nav d-flex-justufy-between">
-                <div class="filter">
-                    <a href="/autor-listagem"><i class="fas fa-angle-double-left"></i> Todos os Autores</a>
-                </div>                
-            </div>
-            <div class="form-title text-center">
-                <h2 class="text-dark">Atualizar Autor</h2>
-                <span class="text-light">Utilize o formulário abaixo para atualizar o Autor</span>
-            </div>     
+    <main>
 
-            <form action="" method="POST" class="cadastrar">
-                <div class="new_book">
-                    <div class="form-group">
-                        <label for="nome" class="text-light">Nome</label>
-                        <input type="hidden" name="id" value = "">
-                        <input type="text" name="nome" value="">
-                    </div>       
-                    <div class="form-group">
-                        <label for="nacionalidade" class="text-light">Nacionalidade</label>
-                        <input type="text" name="nacionalidade" value="">
-                    </div>                  
-                    <div class="form-group">                       
-                        <button type="submit" class="btn text-dark update">Salvar</button>
-                    </div>
-                </div>
-            </form>
-
-
+        <a class="botao__voltar" href="/autor-listagem"><i class="fas fa-angle-double-left"></i> Todos os autores</a>    
+        <div class="cabecalho__secundario">
+            <h2>Cadastrar Autor</h2>
+            <span>Utilize o formulário abaixo para cadastrar o Autor</span>
         </div>
 
+        <form action="" method="POST" class="formulario__cadastrar">
+
+            <label class="formulario__label" for="nome">Nome</label>
+            <input type="hidden" name="id" value = "">
+            <input class="formulario__input" type="text" name="nome" value="" required>
+
+            <label class="formulario__label" for="nacionalidade">Nacionalidade</label>
+            <input class="formulario__input" type="text" name="nacionalidade" value="" required>
+
+            <button class="formulario__botao" type="submit">Salvar</button>
+
+        </form>
     </main>    
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="/js/autor.js"></script>

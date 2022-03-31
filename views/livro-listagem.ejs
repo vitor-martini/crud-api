@@ -41,10 +41,10 @@
                         <td class="tabela__celula"><%= listaDeLivros[i].numeroPaginas%></td>
                         <td class="tabela__celula"><%= (listaDeLivros[i].status == true) ? 'Ativo' : 'Inativo'%></td>
                         <td class="tabela__celula">
-                            <a class="atualizar" href="<%='/livro-atualizacao?id='+listaDeLivros[i]._id%>">
+                            <a class="botao__atualizar" href="<%='/livro-atualizacao?id='+listaDeLivros[i]._id%>">
                                 <span><i class="fas fa-pencil-alt"></i></span>
                             </a>
-                            <a class="excluir" data-id="<%= listaDeLivros[i]._id%>">
+                            <a class="botao__excluir" data-id="<%= listaDeLivros[i]._id%>">
                                 <span><i class="fa-solid fa-trash-can"></i></span>
                             </a>                                
                         </td>

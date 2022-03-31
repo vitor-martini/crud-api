@@ -35,10 +35,10 @@
                         <td class="tabela__celula"><%= listaDeAutores[i].nome%></td>
                         <td class="tabela__celula"><%= listaDeAutores[i].nacionalidade%></td>
                         <td class="tabela__celula">
-                            <a class="atualizar" href="<%='/autor-atualizacao?id='+listaDeAutores[i]._id%>">
+                            <a class="botao__atualizar" href="<%='/autor-atualizacao?id='+listaDeAutores[i]._id%>">
                                 <span class="text-gradient"><i class="fas fa-pencil-alt"></i></span>
                             </a>
-                            <a class="excluir" data-id="<%= listaDeAutores[i]._id%>">
+                            <a class="botao__excluir" data-id="<%= listaDeAutores[i]._id%>">
                                 <span class="text-gradient"><i class="fa-solid fa-trash-can"></i></span>
                             </a>                                
                         </td>

@@ -1,2 +1,2 @@
-# alura-node-express-mongo
-Desenvolvimento de uma API Rest com Express e MongoDB pelo curso da plataforma Alura
+# express-mongo-crud-api
+Desenvolvimento de uma API Rest com Express e MongoDB.

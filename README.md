@@ -1,2 +1,2 @@
-# express-mongo-crud-api
-Desenvolvimento de uma API Rest com Express e MongoDB.
+# crud-api
+Projeto que aplica de forma simples os métodos CRUD através de uma API Rest desenvolvida com Express e MongoDB.

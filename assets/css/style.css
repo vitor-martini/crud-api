@@ -144,3 +144,7 @@ main{
 .formulario__botao:hover{
     background-color: gray;
 }
+
+.botao__excluir, .botao__atualizar{
+    cursor: pointer;
+}

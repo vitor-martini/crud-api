@@ -9,10 +9,10 @@ db.once('open', () =>{
     console.log('Conexão com o banco feita com sucesso.');
 });
 
-const app = express(); 
-app.use(bodyParser.urlencoded({extended: false}));
-app.set('view engine', 'ejs'); // Setando a view engine
-app.use('/css', express.static(path.resolve(process.cwd(),'assets/css')));
+const app = express();
+app.use(bodyParser.urlencoded({extended: false})); 
+app.set('view engine', 'ejs'); 
+app.use('/css', express.static(path.resolve(process.cwd(),'assets/css'))); 
 app.use('/img', express.static(path.resolve(process.cwd(),'assets/img')));
 app.use('/js', express.static(path.resolve(process.cwd(),'assets/js')));
 

@@ -1,8 +1,8 @@
 # crud-api
-Projeto que aplica de forma simples os métodos CRUD através de uma API Rest desenvolvida com Express e MongoDB.
+Project that simply applies CRUD methods through a Rest API developed with Express and MongoDB.
 
-## Como rodar?
-1. Crie um banco de dados em https://www.mongodb.com/atlas/database.
-2. Altere a ConnectionString da variável de ambiente MONGO_URI em "crud-api/config.env"
-3. Rode o script "npm start".
-4. O servidor está escutando na porta 3000, ou definida na variável de ambiente PORT de "crud-api/config.env".
+## How to run it?
+1. Create a database in https://www.mongodb.com/atlas/database.
+2. Change the ConnectionString of the MONGO_URI environment variable in "crud-api/config.env"
+3. Run "npm start".
+4. The server is listening on port 3000, or set in the PORT environment variable of "crud-api/config.env".
